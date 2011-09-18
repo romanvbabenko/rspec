@@ -164,6 +164,8 @@ module Spec
           end
         end
         
+        options_file = '.rspec' if options_file.nil? && File.exist?('.rspec') && !@argv.any? {|a| a =~ /^\-/}
+        
         if options_file.nil? &&
            File.exist?('spec/spec.opts') &&
            !@argv.any?{|a| a =~ /^\-/ }
