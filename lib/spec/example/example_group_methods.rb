@@ -85,7 +85,7 @@ module Spec
 
       # Use this to temporarily disable an example.
       def xexample(description=nil, opts={}, &block)
-        Kernel.warn("Example disabled: #{description}")
+        Kernel.warn("Example disabled: #{description || 'Not Specified'}\n#{caller.first}")
       end
 
       alias_method :xit, :xexample
