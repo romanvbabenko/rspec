@@ -52,6 +52,7 @@ module Spec
                                                     "specdoc|s                : Code example doc strings",
                                                     "nested|n                 : Code example doc strings with nested groups indented",
                                                     "html|h                   : A nice HTML report",
+                                                    "text_mate|t              : Formats backtraces so they're clickable by TextMate",
                                                     "failing_examples|e       : Write all failing examples - input for --example",
                                                     "failing_example_groups|g : Write all failing example groups - input for --example",
                                                     " ",
@@ -163,9 +164,9 @@ module Spec
             options_file = @argv.delete_at(index)
           end
         end
-        
+
         options_file = '.rspec' if options_file.nil? && File.exist?('.rspec') && !@argv.any? {|a| a =~ /^\-/}
-        
+
         if options_file.nil? &&
            File.exist?('spec/spec.opts') &&
            !@argv.any?{|a| a =~ /^\-/ }
@@ -181,7 +182,7 @@ module Spec
       end
 
       def parse_options_file(options_file)
-        option_file_args = File.readlines(options_file).map {|l| l.chomp.split " "}.flatten
+        option_file_args = File.readlines(options_file).reject { |l| l.strip =~ /^#/ }.map {|l| l.chomp.split " "}.flatten
         @argv.push(*option_file_args)
       end
 

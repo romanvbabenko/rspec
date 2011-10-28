@@ -25,7 +25,9 @@ module Spec
                      'g' => ['spec/runner/formatter/failing_example_groups_formatter', 'Formatter::FailingExampleGroupsFormatter'],
                'profile' => ['spec/runner/formatter/profile_formatter',                'Formatter::ProfileFormatter'],
                      'o' => ['spec/runner/formatter/profile_formatter',                'Formatter::ProfileFormatter'],
-              'textmate' => ['spec/runner/formatter/text_mate_formatter',              'Formatter::TextMateFormatter']
+              'textmate' => ['spec/runner/formatter/text_mate_formatter',              'Formatter::TextMateFormatter'],
+             'text_mate' => ['spec/runner/formatter/text_mate_formatter',              'Formatter::TextMateFormatter'],
+                     't' => ['spec/runner/formatter/text_mate_formatter',              'Formatter::TextMateFormatter']
       }
 
       attr_accessor(
@@ -52,7 +54,7 @@ module Spec
       )
       attr_reader :colour, :differ_class, :files, :examples, :example_groups
       attr_writer :drb_port
-      
+
       def initialize(error_stream, output_stream)
         @error_stream = error_stream
         @output_stream = output_stream
@@ -294,7 +296,7 @@ module Spec
       def drb_port
         @drb_port.to_i if defined?(@drb_port)
       end
-      
+
     protected
 
       def define_predicate_matchers
